@@ -1,123 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Notes App</title>
-  <style>
-    body {
-      background: #0f172a;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 40px;
-    }
-
-    .container {
-      width: 300px;
-      margin: auto;
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 12px;
-    }
-
-    textarea {
-      width: 100%;
-      height: 80px;
-      resize: none;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      font-size: 14px;
-    }
-
-    button {
-      margin-top: 10px;
-      padding: 8px 15px;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 6px;
-      border: none;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 15px;
-    }
-
-    li {
-      background: #334155;
-      margin: 6px 0;
-      padding: 8px;
-      border-radius: 6px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .delete {
-      background: #ef4444;
-      color: white;
-      border: none;
-      padding: 4px 8px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    a {
-      color: #38bdf8;
-      display: block;
-      margin-top: 15px;
-      text-decoration: none;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Notes App | PrinceRaj Hub</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>📝 Notes App</h2>
+<nav style="padding:15px; background:#0f172a; text-align:center;">
+  <a href="index.html" style="color:#38bdf8; margin:10px;">Home</a>
+  <a href="projects.html" style="color:#38bdf8; margin:10px;">Projects</a>
+  <a href="coding.html" style="color:#38bdf8; margin:10px;">Coding</a>
+  <a href="calculator.html" style="color:#38bdf8; margin:10px;">Calculator</a>
+  <a href="timer.html" style="color:#38bdf8; margin:10px;">Timer</a>
+  <a href="notes.html" style="color:#38bdf8; margin:10px;">Notes</a>
+</nav>
 
-<div class="container">
-  <textarea id="noteInput" placeholder="Write your note here..."></textarea>
-  <br>
-  <button onclick="addNote()">Add Note</button>
+<hr>
 
-  <ul id="notesList"></ul>
+<h1 style="text-align:center;">📝 Notes App</h1>
+<p style="text-align:center;">Yahan apne notes likho aur save karo</p>
+
+<div style="max-width:400px; margin:30px auto; text-align:center;">
+  <textarea id="note"
+    placeholder="Yahan apna note likho..."
+    style="width:100%; height:120px; padding:10px; border-radius:8px;">
+  </textarea>
+
+  <br><br>
+
+  <button onclick="saveNote()" style="padding:10px 20px;">💾 Save</button>
+  <button onclick="clearNote()" style="padding:10px 20px;">🗑 Clear</button>
 </div>
 
-<a href="projects.html">← Back to Projects</a>
+<p style="text-align:center;">
+  <a href="projects.html">← Back to Projects</a>
+</p>
 
 <script>
-  let notes = JSON.parse(localStorage.getItem("notes")) || [];
+  const noteBox = document.getElementById("note");
 
-  function showNotes() {
-    let list = document.getElementById("notesList");
-    list.innerHTML = "";
-    notes.forEach((note, index) => {
-      list.innerHTML += `
-        <li>
-          ${note}
-          <button class="delete" onclick="deleteNote(${index})">X</button>
-        </li>
-      `;
-    });
+  // Load saved note
+  noteBox.value = localStorage.getItem("myNote") || "";
+
+  function saveNote() {
+    localStorage.setItem("myNote", noteBox.value);
+    alert("Note saved!");
   }
 
-  function addNote() {
-    let input = document.getElementById("noteInput");
-    if (input.value.trim() === "") return;
-    notes.push(input.value);
-    localStorage.setItem("notes", JSON.stringify(notes));
-    input.value = "";
-    showNotes();
+  function clearNote() {
+    localStorage.removeItem("myNote");
+    noteBox.value = "";
   }
-
-  function deleteNote(index) {
-    notes.splice(index, 1);
-    localStorage.setItem("notes", JSON.stringify(notes));
-    showNotes();
-  }
-
-  showNotes();
 </script>
 
 </body>
