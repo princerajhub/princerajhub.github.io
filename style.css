@@ -120,3 +120,17 @@ input, textarea {
 .back-link:hover {
   color: white;
 }
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
