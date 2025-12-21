@@ -134,3 +134,23 @@ input, textarea {
   transform: translateY(-8px) scale(1.03);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
+/* ===== FIXED NAVBAR ===== */
+.navbar {
+  position: sticky;
+  top: 0;
+  background: #020617;
+  z-index: 1000;
+  flex-wrap: wrap;
+}
+
+/* ===== MOBILE FRIENDLY ===== */
+@media (max-width: 600px) {
+  .navbar {
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  .card {
+    width: 90%;
+  }
+}
