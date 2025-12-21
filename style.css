@@ -154,3 +154,9 @@ input, textarea {
     width: 90%;
   }
 }
+/* ===== PAGE TOP SPACING FIX ===== */
+body {
+  padding-top: 70px;
+}
+padding-top: 60px;  /* thoda kam */
+padding-top: 80px;  /* thoda zyada */
