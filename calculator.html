@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator | PrinceRaj Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .calc {
+      margin-top: 40px;
+    }
+    input {
+      width: 220px;
+      height: 40px;
+      font-size: 20px;
+      text-align: right;
+      margin-bottom: 10px;
+    }
+    .btn {
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      font-size: 18px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🧮 Calculator App</h1>
+</header>
+
+<div class="calc">
+  <input type="text" id="result" disabled><br>
+
+  <button class="btn" onclick="add('1')">1</button>
+  <button class="btn" onclick="add('2')">2</button>
+  <button class="btn" onclick="add('3')">3</button>
+  <button class="btn" onclick="add('+')">+</button><br>
+
+  <button class="btn" onclick="add('4')">4</button>
+  <button class="btn" onclick="add('5')">5</button>
+  <button class="btn" onclick="add('6')">6</button>
+  <button class="btn" onclick="add('-')">-</button><br>
+
+  <button class="btn" onclick="add('7')">7</button>
+  <button class="btn" onclick="add('8')">8</button>
+  <button class="btn" onclick="add('9')">9</button>
+  <button class="btn" onclick="add('*')">*</button><br>
+
+  <button class="btn" onclick="clearResult()">C</button>
+  <button class="btn" onclick="add('0')">0</button>
+  <button class="btn" onclick="calculate()">=</button>
+  <button class="btn" onclick="add('/')">/</button>
+</div>
+
+<p style="margin-top:20px;">
+  <a href="projects.html" style="color:#38bdf8;">⬅ Back to Projects</a>
+</p>
+
+<script>
+  function add(val) {
+    document.getElementById("result").value += val;
+  }
+  function clearResult() {
+    document.getElementById("result").value = "";
+  }
+  function calculate() {
+    document.getElementById("result").value =
+      eval(document.getElementById("result").value);
+  }
+</script>
+
+</body>
+</html>
