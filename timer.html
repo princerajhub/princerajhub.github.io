@@ -1,55 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Timer App</title>
-  <style>
-    body{
-      background:#0f172a;
-      color:white;
-      text-align:center;
-      font-family:Arial;
-      padding-top:50px;
-    }
-    button{
-      padding:10px 15px;
-      margin:5px;
-      font-size:16px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Timer App | PrinceRaj Hub</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>⏱ Timer App</h2>
-<h1 id="time">0</h1>
+<nav style="padding:15px; background:#0f172a; text-align:center;">
+  <a href="index.html" style="color:#38bdf8; margin:10px;">Home</a>
+  <a href="projects.html" style="color:#38bdf8; margin:10px;">Projects</a>
+  <a href="coding.html" style="color:#38bdf8; margin:10px;">Coding</a>
+  <a href="calculator.html" style="color:#38bdf8; margin:10px;">Calculator</a>
+  <a href="timer.html" style="color:#38bdf8; margin:10px;">Timer</a>
+  <a href="notes.html" style="color:#38bdf8; margin:10px;">Notes</a>
+</nav>
 
-<button onclick="start()">Start</button>
-<button onclick="stop()">Stop</button>
-<button onclick="reset()">Reset</button>
+<hr>
 
-<br><br>
-<a href="projects.html" style="color:#38bdf8;">← Back to Projects</a>
+<h1 style="text-align:center;">⏱ Timer App</h1>
+<p style="text-align:center;">Start, Stop aur Reset timer</p>
+
+<div style="text-align:center; margin-top:30px;">
+  <h2 id="display">00:00</h2>
+
+  <button onclick="startTimer()">▶ Start</button>
+  <button onclick="stopTimer()">⏸ Stop</button>
+  <button onclick="resetTimer()">🔁 Reset</button>
+</div>
+
+<p style="text-align:center; margin-top:30px;">
+  <a href="projects.html">← Back to Projects</a>
+</p>
 
 <script>
-let t = 0;
-let timer;
+  let seconds = 0;
+  let timer = null;
 
-function start(){
-  if(!timer){
-    timer = setInterval(()=>{
-      t++;
-      document.getElementById("time").innerText = t;
-    },1000);
+  function updateDisplay() {
+    let mins = Math.floor(seconds / 60);
+    let secs = seconds % 60;
+    document.getElementById("display").innerText =
+      String(mins).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
   }
-}
-function stop(){
-  clearInterval(timer);
-  timer = null;
-}
-function reset(){
-  stop();
-  t = 0;
-  document.getElementById("time").innerText = t;
-}
+
+  function startTimer() {
+    if (timer !== null) return;
+    timer = setInterval(() => {
+      seconds++;
+      updateDisplay();
+    }, 1000);
+  }
+
+  function stopTimer() {
+    clearInterval(timer);
+    timer = null;
+  }
+
+  function resetTimer() {
+    stopTimer();
+    seconds = 0;
+    updateDisplay();
+  }
 </script>
 
 </body>
